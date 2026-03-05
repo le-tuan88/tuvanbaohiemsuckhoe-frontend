@@ -18,11 +18,11 @@ export function Hero() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         className="flex flex-col items-start text-left"
                     >
-                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide mb-2 md:mb-6 shadow-sm border border-rose-200">
+                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide mb-0 md:mb-6 shadow-sm border border-rose-200">
                             Đại lý Dai-ichi Life Việt Nam
                         </span>
 
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+                        <h1 className="mt-0 text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight md:leading-tight mb-6 pt-0">
                             Đồng hành cùng mẹ, <br className="hidden md:block" />
                             <span className="text-rose-600">Bảo vệ tương lai</span> bé
                         </h1>
