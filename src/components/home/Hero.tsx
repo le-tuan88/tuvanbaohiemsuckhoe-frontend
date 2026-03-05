@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 
 export function Hero() {
     return (
-        <section className="relative bg-gradient-to-br from-rose-50/80 via-white to-rose-100/30 pt-24 pb-20 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-rose-50/80 via-white to-rose-100/30 pt-4 md:pt-24 pb-20 overflow-hidden">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-8 items-center max-w-7xl mx-auto">
 
                     {/* Cột trái: Nội dung */}
                     <motion.div
@@ -18,12 +18,12 @@ export function Hero() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         className="flex flex-col items-start text-left"
                     >
-                        <div className="flex flex-col gap-1 md:gap-4 mb-4 md:mb-6">
-                            <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide w-fit shadow-sm border border-rose-200">
+                        <div className="flex flex-col gap-1 md:gap-4 mt-0 mb-4 md:mb-6">
+                            <span className="mt-0 mb-0 py-0.5 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide w-fit shadow-sm border border-rose-200">
                                 Đại lý Dai-ichi Life Việt Nam
                             </span>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none md:leading-tight mt-1 md:mt-0">
+                            <h1 className="mt-0 tracking-tight leading-tight md:leading-tight text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900">
                                 Đồng hành cùng mẹ, <br className="hidden md:block" />
                                 <span className="text-rose-600">Bảo vệ tương lai</span> bé
                             </h1>
