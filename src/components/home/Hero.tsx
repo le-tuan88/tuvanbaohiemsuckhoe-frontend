@@ -66,7 +66,7 @@ export function Hero() {
                         {/* Image wrapper */}
                         <div className="relative w-[90%] h-[90%] md:w-[80%] md:h-[80%] aspect-square">
                             <Image
-                                src="/hero-image.png"
+                                src="/hero-image.jpg"
                                 alt="Gia đình hạnh phúc cùng Lê Vy Bảo Hiểm"
                                 fill
                                 className="object-contain drop-shadow-2xl z-10"
