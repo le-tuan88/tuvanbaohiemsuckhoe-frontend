@@ -18,14 +18,16 @@ export function Hero() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         className="flex flex-col items-start text-left"
                     >
-                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide mb-0 md:mb-6 shadow-sm border border-rose-200">
-                            Đại lý Dai-ichi Life Việt Nam
-                        </span>
+                        <div className="flex flex-col gap-2 md:gap-4 mb-6">
+                            <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide w-fit shadow-sm border border-rose-200">
+                                Đại lý Dai-ichi Life Việt Nam
+                            </span>
 
-                        <h1 className="mt-0 text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight md:leading-tight mb-6 pt-0">
-                            Đồng hành cùng mẹ, <br className="hidden md:block" />
-                            <span className="text-rose-600">Bảo vệ tương lai</span> bé
-                        </h1>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight md:leading-tight">
+                                Đồng hành cùng mẹ, <br className="hidden md:block" />
+                                <span className="text-rose-600">Bảo vệ tương lai</span> bé
+                            </h1>
+                        </div>
 
                         <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-xl">
                             Lê Vy mang đến giải pháp bảo hiểm sức khỏe và thai sản toàn diện, thiết kế riêng cho từng gia đình. Tư vấn tận tâm, hỗ trợ bồi thường nhanh chóng 24/7.
