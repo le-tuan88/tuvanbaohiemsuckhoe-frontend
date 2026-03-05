@@ -64,12 +64,15 @@ export function Hero() {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-tr from-rose-100 to-pink-50 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] -z-10 shadow-2xl transition-transform hover:scale-105 duration-700"></div>
 
                         {/* Image wrapper */}
-                        <div className="relative w-[90%] h-[90%] md:w-[80%] md:h-[80%] aspect-square">
+                        <div
+                            className="relative w-[85%] h-[85%] md:w-[75%] md:h-[75%] aspect-square overflow-hidden shadow-2xl z-10"
+                            style={{ borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" }}
+                        >
                             <Image
                                 src="/hero-image.jpg"
                                 alt="Gia đình hạnh phúc cùng Lê Vy Bảo Hiểm"
                                 fill
-                                className="object-contain drop-shadow-2xl z-10"
+                                className="object-cover"
                                 priority
                             />
                         </div>
