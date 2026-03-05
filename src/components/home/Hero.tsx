@@ -18,7 +18,7 @@ export function Hero() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         className="flex flex-col items-start text-left"
                     >
-                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide mb-6 shadow-sm border border-rose-200">
+                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-sm font-bold tracking-wide mb-3 md:mb-6 shadow-sm border border-rose-200">
                             Đại lý Dai-ichi Life Việt Nam
                         </span>
 
