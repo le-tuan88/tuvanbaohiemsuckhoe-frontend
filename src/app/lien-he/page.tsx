@@ -1,12 +1,10 @@
+import ContactClient from "./ContactClient";
+
 export const metadata = {
-    title: "Liên hệ | Lê Vy Bảo Hiểm",
+    title: "Liên hệ tư vấn - Lê Vy Bảo Hiểm",
+    description: "Liên hệ Lê Vy để được tư vấn các gói bảo hiểm sức khoẻ, thai sản Dai-ichi Life 24/7. Hotline/Zalo: 0909 580 238",
 };
 
 export default function ContactPage() {
-    return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="text-3xl font-bold text-slate-900 mb-6">Liên hệ với chúng tôi</h1>
-            <p className="text-slate-600">Nội dung trang đang được cập nhật...</p>
-        </div>
-    );
+    return <ContactClient />;
 }

@@ -1,12 +1,10 @@
+import HealthClient from "./HealthClient";
+
 export const metadata = {
-    title: "Bảo hiểm Sức khỏe | Lê Vy Bảo Hiểm",
+    title: "Bảo hiểm Sức khỏe Toàn Diện - Lê Vy Bảo Hiểm",
+    description: "Giải pháp bảo hiểm sức khoẻ ưu việt từ Dai-ichi Life. Qũy chăm sóc 1 tỷ đồng/bệnh, bảo lãnh viện phí mọi bệnh viện quốc tế.",
 };
 
 export default function HealthInsurancePage() {
-    return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="text-3xl font-bold text-slate-900 mb-6">Bảo hiểm Sức khỏe</h1>
-            <p className="text-slate-600">Nội dung trang đang được cập nhật...</p>
-        </div>
-    );
+    return <HealthClient />;
 }

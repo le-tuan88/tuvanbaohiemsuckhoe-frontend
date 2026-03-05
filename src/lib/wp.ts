@@ -11,7 +11,7 @@ export async function fetchGraphQL(query: string, variables: Record<string, any>
                 query,
                 variables,
             }),
-            // Cache settings có thể cấu hình sau tuỳ vào Next.js setup (ví dụ: { next: { revalidate: 60 } })
+            next: { revalidate: 3600 }, // Cache 1 giờ
         });
 
         if (!res.ok) {
@@ -31,4 +31,66 @@ export async function fetchGraphQL(query: string, variables: Record<string, any>
         console.error("Lỗi khi gọi GraphQL WP:", error);
         return null;
     }
+}
+
+export async function getAllPosts() {
+    const query = `
+    query GetAllPosts {
+      posts(first: 20, where: {orderby: {field: DATE, order: DESC}}) {
+        nodes {
+          title
+          slug
+          date
+          excerpt
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `;
+    const data = await fetchGraphQL(query);
+    return data?.posts?.nodes || [];
+}
+
+export async function getPostBySlug(slug: string) {
+    const query = `
+    query GetPostBySlug($id: ID!, $idType: PostIdType!) {
+      post(id: $id, idType: $idType) {
+        title
+        content
+        date
+        excerpt
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        categories {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  `;
+    const variables = { id: slug, idType: "SLUG" };
+    const data = await fetchGraphQL(query, variables);
+    return data?.post;
+}
+
+export async function getAllPostSlugs() {
+    const query = `
+    query GetAllPostSlugs {
+      posts(first: 100) {
+        nodes {
+          slug
+        }
+      }
+    }
+  `;
+    const data = await fetchGraphQL(query);
+    return data?.posts?.nodes || [];
 }

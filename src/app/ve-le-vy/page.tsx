@@ -1,12 +1,10 @@
+import AboutDetailClient from "./AboutDetailClient";
+
 export const metadata = {
-    title: "Về Lê Vy | Lê Vy Bảo Hiểm",
+    title: "Về Lê Vy | Chuyên gia tư vấn Bảo hiểm Dai-ichi Life",
+    description: "Lê Vy Bảo Hiểm - Khởi nguồn từ tình yêu của người mẹ. Cam kết tận tâm, chuyên nghiệp, thấu hiểu trong tư vấn bảo hiểm sức khoẻ, thai sản.",
 };
 
 export default function AboutPage() {
-    return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="text-3xl font-bold text-slate-900 mb-6">Về Lê Vy</h1>
-            <p className="text-slate-600">Nội dung trang đang được cập nhật...</p>
-        </div>
-    );
+    return <AboutDetailClient />;
 }

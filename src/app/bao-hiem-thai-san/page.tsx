@@ -1,12 +1,10 @@
+import MaternityClient from "./MaternityClient";
+
 export const metadata = {
-    title: "Bảo hiểm Thai sản | Lê Vy Bảo Hiểm",
+    title: "Bảo hiểm Thai Sản - Lê Vy Bảo Hiểm",
+    description: "Bảo hiểm thai sản Dai-ichi Life 100% bồi thường sinh mổ, sinh thường tại Vinmec, Hạnh Phúc, Từ Dũ... Tham gia trước thai kỳ.",
 };
 
 export default function MaternityInsurancePage() {
-    return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="text-3xl font-bold text-slate-900 mb-6">Bảo hiểm Thai sản</h1>
-            <p className="text-slate-600">Nội dung trang đang được cập nhật...</p>
-        </div>
-    );
+    return <MaternityClient />;
 }
