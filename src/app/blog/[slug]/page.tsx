@@ -3,21 +3,21 @@ import { notFound } from "next/navigation";
 import BlogDetailClient from "./BlogDetailClient";
 
 type Props = {
-    params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
-    const { slug } = await params;
-    const post = await getPostBySlug(slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
-    if (!post) {
-        return { title: 'Không tìm thấy bài viết' };
-    }
+  if (!post) {
+    return { title: 'Không tìm thấy bài viết' };
+  }
 
-    const cleanExcerpt = post.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, "").substring(0, 160) : "";
+  const cleanExcerpt = post.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, "").substring(0, 160) : "";
 
-    return {
-        title: \`\${post.title} | Lê Vy Bảo Hiểm\`,
+  return {
+    title: `${post.title} | Lê Vy Bảo Hiểm`,
     description: cleanExcerpt,
   };
 }
