@@ -7,18 +7,16 @@ import { motion } from "framer-motion";
 export default function ContactClient() {
     const [formData, setFormData] = useState({ name: '', phone: '', note: '' });
     const [isSubmit, setIsSubmit] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsLoading(true);
+        setIsSubmitting(true);
         setErrorMsg('');
 
         try {
-            const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL
-                ? process.env.NEXT_PUBLIC_WORDPRESS_API_URL.replace('/graphql', '/wp-json/levy/v1/contact')
-                : 'https://quanly.tuvanbaohiemsuckhoe.com/wp-json/levy/v1/contact';
+            const apiUrl = 'https://quanly.tuvanbaohiemsuckhoe.com/wp-json/levy/v1/contact';
 
             const res = await fetch(apiUrl, {
                 method: "POST",
@@ -32,17 +30,19 @@ export default function ContactClient() {
                 })
             });
 
-            if (!res.ok) {
+            const data = await res.json();
+
+            if (data.status === 'success') {
+                setIsSubmit(true);
+                setFormData({ name: '', phone: '', note: '' });
+            } else {
                 throw new Error('Gửi thất bại');
             }
-
-            setIsSubmit(true);
-            setFormData({ name: '', phone: '', note: '' });
         } catch (error) {
             console.error("Lỗi gửi liên hệ:", error);
-            setErrorMsg('Đã có lỗi xảy ra. Vui lòng thử lại hoặc gọi trực tiếp Hotline.');
+            setErrorMsg('Lỗi hệ thống, vui lòng thử lại');
         } finally {
-            setIsLoading(false);
+            setIsSubmitting(false);
         }
     };
 
@@ -166,11 +166,11 @@ export default function ContactClient() {
 
                                     <button
                                         type="submit"
-                                        disabled={isLoading}
+                                        disabled={isSubmitting}
                                         className="w-full bg-rose-600 text-white font-bold py-4 rounded-xl hover:bg-rose-700 transition-colors shadow-lg shadow-rose-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
-                                        {isLoading ? (
-                                            <>Đang gửi yêu cầu...</>
+                                        {isSubmitting ? (
+                                            <>Đang gửi...</>
                                         ) : (
                                             <><Send className="w-5 h-5" /> Gửi Yêu Cầu Tư Vấn</>
                                         )}
