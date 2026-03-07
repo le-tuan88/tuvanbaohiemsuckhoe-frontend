@@ -1,0 +1,246 @@
+/* ============================================ */
+/* BẢN FIX: CSS CHO PLUGIN CLEAN AI V25 */
+/* ============================================ */
+/* 1. AUTHOR BOX (CHỮ KÝ) */
+.cau-author-card-pro {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid #ff4d4f;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    clear: both;
+}
+
+.cau-pro-left {
+    flex-shrink: 0;
+}
+
+/* Ép cứng ảnh để chống lại thuộc tính width: 100% của Next.js */
+.cau-pro-avatar {
+    width: 85px !important;
+    height: 85px !important;
+    max-width: 85px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 3px solid #f0f0f0;
+    margin: 0 !important;
+}
+
+.cau-pro-right {
+    flex: 1;
+}
+
+.cau-pro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.cau-pro-name {
+    margin: 0 0 4px 0 !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    color: #000;
+    line-height: 1.2;
+}
+
+.cau-pro-role {
+    font-size: 14px;
+    color: #d63638;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.cau-pro-bio {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+}
+
+.cau-pro-social {
+    font-size: 13px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.cau-pro-social a {
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.2s;
+    margin-left: 5px;
+}
+
+.cau-link-fb {
+    color: #1877f2;
+}
+
+.cau-link-zalo {
+    color: #0068ff;
+}
+
+.cau-link-tiktok {
+    color: #000000;
+}
+
+/* 2. BOX XEM THÊM */
+.cau-see-more-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #2271b1;
+    padding: 12px 15px;
+    margin: 20px 0;
+    display: block;
+    clear: both;
+    font-size: 15px;
+}
+
+.cau-see-more-box a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #d63638;
+}
+
+/* 3. FAQ ACCORDION */
+.cau-faq-section {
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.cau-faq-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #2271b1;
+}
+
+.cau-faq-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+/* Ẩn dấu tam giác mặc định của HTML details/summary */
+.cau-faq-question {
+    padding: 12px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+    list-style: none !important;
+    position: relative;
+    outline: none;
+    margin: 0 !important;
+}
+
+.cau-faq-question::-webkit-details-marker {
+    display: none !important;
+}
+
+.cau-faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 15px;
+    font-weight: bold;
+    color: #2271b1;
+}
+
+details[open] .cau-faq-question::after {
+    content: '-';
+    color: red;
+}
+
+.cau-faq-answer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    color: #444;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+/* 4. TÍN HIỆU E-E-A-T */
+.cau-eeat-box {
+    margin: 25px 0;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+    position: relative;
+}
+
+.cau-eeat-box.expert-tip {
+    background-color: #fdf2f2;
+    border-left: 5px solid #d63638;
+}
+
+.cau-eeat-box.expert-tip::before {
+    content: '💡 LỜI KHUYÊN CHUYÊN GIA';
+    display: block;
+    font-weight: 800;
+    color: #d63638;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.cau-eeat-box.key-takeaways {
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+}
+
+.cau-eeat-box.key-takeaways::before {
+    content: '🔑 ĐIỂM CỐT LÕI';
+    display: block;
+    font-weight: 800;
+    color: #0050b3;
+    margin-bottom: 10px;
+}
+
+.cau-eeat-box.pros-cons table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.cau-eeat-box.pros-cons th {
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.cau-eeat-box.pros-cons th:first-child {
+    background: #48bb78;
+}
+
+.cau-eeat-box.pros-cons th:last-child {
+    background: #f56565;
+}
+
+.cau-eeat-box.pros-cons td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 600px) {
+    .cau-author-card-pro {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .cau-pro-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}
