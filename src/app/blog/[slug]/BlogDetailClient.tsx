@@ -14,6 +14,13 @@ export default function BlogDetailClient({ post }: { post: any }) {
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=800&q=80";
     const categoryName = post.categories?.nodes?.[0]?.name || "Kiến Thức";
 
+    // Làm sạch nội dung: Đổi URL quản trị thành URL tương đối
+    // Quét cả http và https, có hoặc không có dấu gạch chéo ở cuối
+    const cleanContent = post?.content?.replace(
+        /https?:\/\/quanly\.tuvandai-ichi-life\.com\.vn/g,
+        ''
+    ) || "";
+
     return (
         <article className="bg-white min-h-screen pb-20">
 
@@ -55,8 +62,8 @@ export default function BlogDetailClient({ post }: { post: any }) {
                 >
                     {/* Main Content using Typography Tailwind logic or custom CSS */}
                     <div
-                        className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-rose-600 hover:prose-a:text-rose-700 max-w-none text-slate-700 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
+                        className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-rose-600 hover:prose-a:text-rose-700 max-w-none text-slate-700 leading-relaxed wp-content entry-content"
+                        dangerouslySetInnerHTML={{ __html: cleanContent }}
                     />
 
                     <hr className="my-12 border-slate-200" />
