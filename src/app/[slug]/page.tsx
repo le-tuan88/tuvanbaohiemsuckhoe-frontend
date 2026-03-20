@@ -52,11 +52,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
+  console.log(">>> [DEBUG] Route [slug] hit with slug:", slug);
+  
   const post = await getPostBySlug(slug);
 
   if (!post) {
+    console.log(">>> [DEBUG] Post not found in WP for slug:", slug);
     notFound();
   }
+  console.log(">>> [DEBUG] Post found:", post.title);
+
+
 
   const imageUrl = post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=800&q=80";
   const cleanExcerpt = post.excerpt ? post.excerpt.replace(/<[^>]*>?/gm, "").substring(0, 160) : "";

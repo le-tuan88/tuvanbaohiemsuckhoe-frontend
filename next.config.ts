@@ -13,13 +13,22 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Bắt các URL dạng /?p=123 hoặc /?preview=true&p=123 từ WordPress admin
+  // Bắt các URL có tham số query từ WordPress admin trên bất kỳ đường dẫn nào
   async rewrites() {
     return [
       {
-        // Khi WordPress admin click "Xem bài viết": /?p=ID
-        source: "/",
-        has: [{ type: "query", key: "p", value: "(?<id>\\d+)" }],
+        // Khớp với bất kỳ path nào có ?p=ID hoặc ?preview_id=ID
+        source: "/:path*",
+        has: [
+          { type: "query", key: "p", value: "(?<id>\\d+)" }
+        ],
+        destination: "/api/preview?p=:id",
+      },
+      {
+        source: "/:path*",
+        has: [
+          { type: "query", key: "preview_id", value: "(?<id>\\d+)" }
+        ],
         destination: "/api/preview?p=:id",
       },
     ];
