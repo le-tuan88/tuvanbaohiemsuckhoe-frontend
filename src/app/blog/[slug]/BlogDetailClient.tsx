@@ -56,7 +56,7 @@ export default function BlogDetailClient({ post }: { post: any }) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-14 lg:p-16 border border-slate-100"
+                    className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-6 md:p-10 lg:p-12 border border-slate-100"
                 >
                     {/* Main Content using Typography Tailwind logic or custom CSS */}
                     <div
