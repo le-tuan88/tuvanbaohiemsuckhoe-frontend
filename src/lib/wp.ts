@@ -60,9 +60,11 @@ export async function getPostBySlug(slug: string) {
     query GetPostBySlug($id: ID!, $idType: PostIdType!) {
       post(id: $id, idType: $idType) {
         title
+        slug
         content
         date
         excerpt
+        status
         featuredImage {
           node {
             sourceUrl
@@ -78,7 +80,22 @@ export async function getPostBySlug(slug: string) {
   `;
     const variables = { id: slug, idType: "SLUG" };
     const data = await fetchGraphQL(query, variables);
-    return data?.post;
+    return data?.post || null;
+}
+
+export async function getPostById(id: string | number) {
+    const query = `
+    query GetPostById($id: ID!, $idType: PostIdType!) {
+      post(id: $id, idType: $idType) {
+        title
+        slug
+        status
+      }
+    }
+  `;
+    const variables = { id: String(id), idType: "DATABASE_ID" };
+    const data = await fetchGraphQL(query, variables);
+    return data?.post || null;
 }
 
 export async function getAllPostSlugs() {
