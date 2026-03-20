@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${post.title} | Lê Vy Bảo Hiểm`,
     description: cleanExcerpt,
     alternates: {
-        canonical: `/blog/${slug}`,
+        canonical: `/${slug}`,
     },
     openGraph: {
         title: post.title,
         description: cleanExcerpt,
-        url: `/blog/${slug}`,
+        url: `/${slug}`,
         siteName: "Lê Vy Bảo Hiểm",
         locale: "vi_VN",
         type: "article",
@@ -83,7 +83,7 @@ export default async function PostPage({ params }: Props) {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://tuvanbaohiemsuckhoe.com"}/blog/${slug}`
+      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://tuvanbaohiemsuckhoe.com"}/${slug}`
     }
   };
 

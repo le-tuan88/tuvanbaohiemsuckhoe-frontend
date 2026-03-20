@@ -44,7 +44,7 @@ export default function BlogListClient({ posts }: { posts: any[] }) {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group"
                             >
-                                <Link href={`/blog/${post.slug}`} className="block relative aspect-[16/10] overflow-hidden">
+                                <Link href={`/${post.slug}`} className="block relative aspect-[16/10] overflow-hidden">
                                     <Image
                                         src={imageUrl}
                                         alt={post.title}
@@ -61,7 +61,7 @@ export default function BlogListClient({ posts }: { posts: any[] }) {
                                         <time dateTime={post.date}>{dateStr}</time>
                                     </div>
 
-                                    <Link href={`/blog/${post.slug}`} className="block group-hover:text-rose-600 transition-colors">
+                                    <Link href={`/${post.slug}`} className="block group-hover:text-rose-600 transition-colors">
                                         <h2 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 leading-snug">
                                             {post.title}
                                         </h2>
@@ -72,7 +72,7 @@ export default function BlogListClient({ posts }: { posts: any[] }) {
                                         dangerouslySetInnerHTML={{ __html: post.excerpt || "" }}
                                     />
 
-                                    <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-rose-600 font-bold text-sm hover:text-rose-700 mt-auto uppercase tracking-wide">
+                                    <Link href={`/${post.slug}`} className="inline-flex items-center gap-2 text-rose-600 font-bold text-sm hover:text-rose-700 mt-auto uppercase tracking-wide">
                                         Đọc tiếp <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>

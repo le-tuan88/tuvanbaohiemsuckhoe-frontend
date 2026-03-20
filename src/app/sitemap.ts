@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Thêm các URL bài viết từ WordPress
         if (data?.posts?.nodes) {
             const postsUrls = data.posts.nodes.map((post: any) => ({
-                url: `${siteUrl}/blog/${post.slug}`,
+                url: `${siteUrl}/${post.slug}`,
                 lastModified: post.modified ? new Date(post.modified) : new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.6,
