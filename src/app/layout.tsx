@@ -13,6 +13,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://tuvanbaohiemsuckhoe.com"),
   title: "Lê Vy Bảo Hiểm | Tư Vấn Tận Tâm - Bồi Thường Nhanh Chóng",
   description: "Lê Vy Bảo Hiểm đồng hành cùng mẹ, bảo vệ tương lai bé. Chuyên tư vấn bảo hiểm sức khỏe, bảo hiểm thai sản Dai-ichi Life.",
 };

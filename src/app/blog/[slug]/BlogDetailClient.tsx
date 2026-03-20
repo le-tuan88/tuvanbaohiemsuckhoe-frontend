@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, ChevronLeft, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -19,13 +20,17 @@ export default function BlogDetailClient({ post }: { post: any }) {
 
             {/* Featured Header */}
             <header className="relative pt-32 pb-40 overflow-hidden text-center text-white">
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${imageUrl}')` }}
+                <Image
+                    src={imageUrl}
+                    alt={post.title}
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover"
                 />
-                <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-[2px] z-10" />
 
-                <div className="container mx-auto px-4 relative z-10 max-w-4xl">
+                <div className="container mx-auto px-4 relative z-20 max-w-4xl">
                     <Link href="/blog" className="inline-flex items-center gap-2 text-rose-200 hover:text-white transition-colors mb-8 text-sm font-semibold uppercase tracking-wider">
                         <ChevronLeft className="w-4 h-4" /> Quay lại Blog
                     </Link>

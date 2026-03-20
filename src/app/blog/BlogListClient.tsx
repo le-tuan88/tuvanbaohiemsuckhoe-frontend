@@ -45,12 +45,14 @@ export default function BlogListClient({ posts }: { posts: any[] }) {
                                 className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group"
                             >
                                 <Link href={`/blog/${post.slug}`} className="block relative aspect-[16/10] overflow-hidden">
-                                    {/* Dùng div cover tạm vì Image next.js cần config domain */}
-                                    <div
-                                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                        style={{ backgroundImage: `url('${imageUrl}')` }}
-                                    ></div>
-                                    <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors"></div>
+                                    <Image
+                                        src={imageUrl}
+                                        alt={post.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors z-10"></div>
                                 </Link>
 
                                 <div className="p-6 flex-grow flex flex-col">
