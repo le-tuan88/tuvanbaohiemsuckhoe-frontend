@@ -60,7 +60,7 @@ export default function BlogDetailClient({ post }: { post: any }) {
                 >
                     {/* Main Content using Typography Tailwind logic or custom CSS */}
                     <div
-                        className="prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-rose-600 hover:prose-a:text-rose-700 max-w-none text-slate-700 leading-relaxed"
+                        className="wp-content prose prose-lg prose-slate prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-rose-600 hover:prose-a:text-rose-700 max-w-none text-slate-700 leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
 
