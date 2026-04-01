@@ -1,4 +1,4 @@
-import { getPaginatedPosts } from "@/lib/wp";
+import { getAllPosts } from "@/lib/wp";
 import BlogListClient from "./BlogListClient";
 import type { Metadata } from "next";
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 // Next 15 Server Component
 export default async function BlogPage() {
-    const postsData = await getPaginatedPosts(9);
+    const postsData = await getAllPosts();
     
     const jsonLd = {
         "@context": "https://schema.org",
@@ -41,7 +41,7 @@ export default async function BlogPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <BlogListClient initialPosts={postsData.nodes} initialPageInfo={postsData.pageInfo} />
+            <BlogListClient initialPosts={postsData} />
         </>
     );
 }

@@ -2,33 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, ArrowRight, Rss, Loader2 } from "lucide-react";
+import { Calendar, ArrowRight, Rss, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export default function BlogListClient({ initialPosts, initialPageInfo }: { initialPosts: any[], initialPageInfo: any }) {
-    const [posts, setPosts] = useState(initialPosts || []);
-    const [pageInfo, setPageInfo] = useState(initialPageInfo || { hasNextPage: false, endCursor: null });
-    const [loading, setLoading] = useState(false);
-
-    const loadMore = async () => {
-        if (!pageInfo.hasNextPage || !pageInfo.endCursor) return;
-        setLoading(true);
-        try {
-            const res = await fetch(`/api/posts?after=${pageInfo.endCursor}`);
-            if (res.ok) {
-                const data = await res.json();
-                setPosts(prev => [...prev, ...data.nodes]);
-                setPageInfo(data.pageInfo);
-            }
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    if (!posts || posts.length === 0) {
+export default function BlogListClient({ initialPosts }: { initialPosts: any[] }) {
+    const [currentPage, setCurrentPage] = useState(1);
+    
+    if (!initialPosts || initialPosts.length === 0) {
         return (
             <div className="min-h-[50vh] flex flex-col items-center justify-center text-center p-8 text-slate-500">
                 <Rss className="w-16 h-16 mb-4 text-slate-300" />
@@ -38,8 +19,23 @@ export default function BlogListClient({ initialPosts, initialPageInfo }: { init
         );
     }
 
-    const featuredPost = posts[0];
-    const gridPosts = posts.slice(1);
+    const itemsPerPage = 6;
+    
+    // We only show the featured post on page 1
+    const featuredPost = currentPage === 1 ? initialPosts[0] : null;
+
+    // To align with standard UX, if page 1 displays 1 Big + 6 Small, then index items start at 1
+    // If we're on page 2, we shouldn't show the featured post. And we just show up to itemsPerPage.
+    // Example: total = 13.
+    // Page 1: featured = index 0. Grid = index 1 to 6 (6 posts).
+    // Page 2: featured = null. Grid = index 7 to 12 (6 posts).
+    // Page 3: featured = null. Grid = index 13 to 13 (1 post).
+    
+    const startIndex = currentPage === 1 ? 1 : ((currentPage - 1) * itemsPerPage) + 1;
+    const gridPosts = initialPosts.slice(startIndex, startIndex + itemsPerPage);
+
+    const totalGridAvailable = initialPosts.length - 1; // excluding the featured post
+    const totalPages = Math.max(1, Math.ceil(totalGridAvailable / itemsPerPage));
 
     return (
         <div className="bg-slate-50 min-h-screen pb-24 pt-10">
@@ -144,16 +140,51 @@ export default function BlogListClient({ initialPosts, initialPageInfo }: { init
                     </div>
                 )}
 
-                {/* Load More Button */}
-                {pageInfo.hasNextPage && (
-                    <div className="text-center mt-8">
+                {/* Numbered Pagination */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-2 mt-4">
                         <button
-                            onClick={loadMore}
-                            disabled={loading}
-                            className="inline-flex items-center gap-2 px-8 py-3 bg-white border border-slate-200 text-slate-700 font-bold rounded-full hover:bg-slate-50 hover:text-rose-600 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                            onClick={() => {
+                                setCurrentPage(p => Math.max(1, p - 1));
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            disabled={currentPage === 1}
+                            className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-rose-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
                         >
-                            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : null}
-                            {loading ? "Đang tải..." : "Tải thêm bài viết"}
+                            <ChevronLeft className="w-5 h-5" />
+                        </button>
+
+                        {Array.from({ length: totalPages }).map((_, idx) => {
+                            const pageNumber = idx + 1;
+                            const isActive = pageNumber === currentPage;
+                            return (
+                                <button
+                                    key={pageNumber}
+                                    onClick={() => {
+                                        setCurrentPage(pageNumber);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                    className={`w-10 h-10 flex items-center justify-center rounded-full font-bold transition-all shadow-sm
+                                        ${isActive 
+                                            ? 'bg-rose-600 text-white shadow-md shadow-rose-200 border-none' 
+                                            : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-rose-600'
+                                        }`
+                                    }
+                                >
+                                    {pageNumber}
+                                </button>
+                            );
+                        })}
+
+                        <button
+                            onClick={() => {
+                                setCurrentPage(p => Math.min(totalPages, p + 1));
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            disabled={currentPage === totalPages}
+                            className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-rose-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
+                        >
+                            <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
                 )}

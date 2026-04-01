@@ -36,7 +36,7 @@ export async function fetchGraphQL(query: string, variables: Record<string, any>
 export async function getAllPosts() {
     const query = `
     query GetAllPosts {
-      posts(first: 20, where: {orderby: {field: DATE, order: DESC}}) {
+      posts(first: 100, where: {orderby: {field: DATE, order: DESC}}) {
         nodes {
           title
           slug

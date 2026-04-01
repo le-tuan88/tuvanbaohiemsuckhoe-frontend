@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, ChevronLeft, PhoneCall } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function BlogDetailClient({ post }: { post: any }) {
     const dateStr = new Date(post.date).toLocaleDateString("vi-VN", {
@@ -15,20 +16,50 @@ export default function BlogDetailClient({ post }: { post: any }) {
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=1200&q=80";
     const categoryName = post.categories?.nodes?.[0]?.name || "Kiến Thức";
 
+    useEffect(() => {
+        // --- TOC Logic cho WordPress [toc] ---
+        // Do React sẽ chặn thẻ <script> tiêm qua dangerouslySetInnerHTML,
+        // chúng ta thực thi logic tắt/bật cho TOC ngay trong useEffect của Next.js
+        const list = document.getElementById("gem-toc-list");
+        const btn = document.querySelector(".gem-toc-btn");
+        if (list && window.innerWidth < 768) {
+            list.style.display = "none";
+            if (btn) btn.textContent = "Hiện";
+        }
+
+        // Định nghĩa hàm global dùng cho thuộc tính onclick="toggleGemTOC(this)" mà WP render ra
+        (window as any).toggleGemTOC = function (header: any) {
+            const list = document.getElementById("gem-toc-list");
+            const btn = header.querySelector(".gem-toc-btn");
+            if (!list || !btn) return;
+            if (list.style.display === "none") {
+                list.style.display = "block";
+                btn.textContent = "Ẩn";
+            } else {
+                list.style.display = "none";
+                btn.textContent = "Hiện";
+            }
+        };
+
+        return () => {
+            delete (window as any).toggleGemTOC;
+        };
+    }, [post.content]);
+
     return (
-        <article className="bg-white min-h-screen pb-20 pt-24 md:pt-32">
+        <article className="bg-white min-h-screen pb-20 pt-16 md:pt-20">
             
             {/* Top Navigation */}
-            <div className="max-w-4xl mx-auto px-[10px] md:px-6 mb-8">
+            <div className="max-w-4xl mx-auto px-[15px] md:px-6 mb-4">
                 <Link href="/blog" className="inline-flex items-center gap-2 text-slate-500 hover:text-rose-600 transition-colors text-sm font-bold uppercase tracking-wider">
                     <ChevronLeft className="w-4 h-4" /> Blog
                 </Link>
             </div>
 
             {/* Clean Header */}
-            <header className="max-w-4xl mx-auto px-[10px] md:px-6 text-left mb-10">
+            <header className="max-w-4xl mx-auto px-[15px] md:px-6 text-left mb-6">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-                    <div className="flex items-center gap-4 mb-6">
+                    <div className="flex items-center gap-4 mb-4">
                         <span className="inline-block px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full uppercase tracking-wider">
                             {categoryName}
                         </span>
@@ -38,7 +69,7 @@ export default function BlogDetailClient({ post }: { post: any }) {
                         </div>
                     </div>
                     
-                    <h1 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-slate-900 leading-tight md:leading-tight mb-8">
+                    <h1 className="text-3xl md:text-5xl lg:text-5xl font-extrabold text-slate-900 leading-tight md:leading-tight mb-6">
                         {post.title}
                     </h1>
                 </motion.div>
@@ -49,7 +80,7 @@ export default function BlogDetailClient({ post }: { post: any }) {
                 initial={{ opacity: 0, scale: 0.98 }} 
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
-                className="max-w-5xl mx-auto px-[10px] md:px-6 mb-12"
+                className="max-w-5xl mx-auto px-[15px] md:px-6 mb-12"
             >
                 <div className="relative aspect-video w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100">
                     <Image
@@ -64,8 +95,8 @@ export default function BlogDetailClient({ post }: { post: any }) {
             </motion.div>
 
             {/* Content & CTA wrapper */}
-            {/* Mobile: px-[10px], Tablet/Desktop: md:px-6 */}
-            <div className="max-w-3xl mx-auto px-[10px] md:px-6">
+            {/* Mobile: px-[15px], Tablet/Desktop: md:px-6 */}
+            <div className="max-w-3xl mx-auto px-[15px] md:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
