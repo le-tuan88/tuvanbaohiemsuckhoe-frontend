@@ -55,6 +55,42 @@ export async function getAllPosts() {
     return data?.posts?.nodes || [];
 }
 
+export async function getPaginatedPosts(first: number = 9, after: string | null = null) {
+    const query = `
+    query GetPaginatedPosts($first: Int!, $after: String) {
+      posts(first: $first, after: $after, where: {orderby: {field: DATE, order: DESC}}) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          title
+          slug
+          date
+          excerpt
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `;
+    
+    // Convert null to undefined or leave as variable
+    const variables: Record<string, any> = { first };
+    if (after) {
+        variables.after = after;
+    }
+    
+    const data = await fetchGraphQL(query, variables);
+    return {
+        nodes: data?.posts?.nodes || [],
+        pageInfo: data?.posts?.pageInfo || { hasNextPage: false, endCursor: null }
+    };
+}
+
 export async function getPostBySlug(slug: string) {
     const query = `
     query GetPostBySlug($id: ID!, $idType: PostIdType!) {
