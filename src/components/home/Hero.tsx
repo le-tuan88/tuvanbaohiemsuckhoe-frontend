@@ -59,7 +59,7 @@ export function Hero() {
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                        className="relative w-full h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center"
+                        className="relative w-full h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center overflow-hidden"
                     >
                         {/* Background Shape / Blob */}
                         <div className="absolute inset-0 bg-rose-200/50 rounded-full blur-[80px] scale-90 -z-10 animate-pulse-slow"></div>
