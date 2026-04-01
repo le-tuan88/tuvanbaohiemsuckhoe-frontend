@@ -47,7 +47,7 @@ export default function BlogDetailClient({ post }: { post: any }) {
     }, [post.content]);
 
     return (
-        <article className="bg-white min-h-screen pb-20 pt-16 md:pt-20">
+        <article className="bg-white min-h-screen pb-20 pt-6 md:pt-10">
             
             {/* Top Navigation */}
             <div className="max-w-4xl mx-auto px-[15px] md:px-6 mb-4">
