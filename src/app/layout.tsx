@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body
-        className={`${beVietnamPro.className} antialiased min-h-screen flex flex-col`}
+        className={`${beVietnamPro.className} antialiased min-h-screen flex flex-col overflow-x-hidden`}
       >
         <Navbar />
         <main className="flex-grow pt-[72px]">
